@@ -1,0 +1,20 @@
+{
+  "name": "f1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^11.13.7",
+    "ts-node": "^8.1.0",
+    "typeorm": "^0.2.16",
+    "typescript": "^3.4.5"
+  }
+}
