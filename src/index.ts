@@ -2,13 +2,15 @@
 //const fastify = require()({ logger: true })
 import * as fastify from 'fastify';
 import { createDefaultConnection, defaultConn } from './core/db';
-import ApiPlugin from './api';
 const app = fastify({ logger: false });
-// Declare a route
-app.register(ApiPlugin,{prefix:'/api/v0'})  
+console.log('Try to Starting');
+import ApiPlugin from './api';
 // Run the server! 
 const start = async () => {
+  console.log('Try to connect');
   await createDefaultConnection(); 
+  console.log('Registering API Routers');
+  app.register(ApiPlugin,{prefix:'/api/v0'})  
   try {
     await app.listen(3100)
     console.log(`server listening on ${JSON.stringify(app.server.address())}`)

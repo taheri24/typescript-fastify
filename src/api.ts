@@ -3,8 +3,8 @@ import RolePlugin from './plugins/role';
 import UserPlugin from "./plugins/user";
  
 export default function ApiPlugin(fastify:FastifyInstance,opts,next){
-    fastify.register(RolePlugin,{  prefix:'/role'})
-    fastify.register(UserPlugin,{  prefix:'/user'})
+    fastify.register(RolePlugin,{  prefix:'/roles'})
+    fastify.register(UserPlugin,{  prefix:'/users'})
 
     next();
 }
