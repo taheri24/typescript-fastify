@@ -12,6 +12,10 @@ export default function FastPluginForCRUD<T>(classType: any){
             const result=await repo.findOne(id,{relations});
             return result || {message:'not found'};
         })
+        fastify.post('/',async req=>{
+            return defaultConn.manager.save(classType,req.body);
+        })
+         
         next();
     }
 }
