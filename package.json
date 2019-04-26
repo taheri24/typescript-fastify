@@ -4,18 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon"
+    "start": "ts-node-dev  --transpileOnly  --inspect --ignore-watch  node_modules src/index.ts",
+    "nodemon":"nodemon"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "fastify": "^2.3.0",
+    "fastify-static": "^2.4.0",
+    "fs-extra": "^7.0.1",
     "mariadb": "^2.0.3",
     "mysql": "^2.17.1"
   },
   "devDependencies": {
     "@types/node": "^11.13.7",
     "ts-node": "^8.1.0",
+    "ts-node-dev": "^1.0.0-pre.32",
     "typeorm": "^0.2.16",
     "typescript": "^3.4.5"
   }

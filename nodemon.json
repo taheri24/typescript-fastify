@@ -5,12 +5,10 @@
         ".git",
         "node_modules"
     ],
-    "watch": [
-        "src"
-    ],
+    "watch":false,
     "env":{
         "TS_NODE_TRANSPILE_ONLY":"true"
     },
-    "exec": "node   -r ts-node/register src/index.ts",
+    "exec": "ts-node-dev  --transpileOnly  --inspect --ignore-watch  node_modules src/index.ts",
     "ext": "ts"
 }
