@@ -5,12 +5,14 @@ import { createDefaultConnection, defaultConn } from './core/db';
 const app = fastify({ logger: false });
 console.log('Try to Starting');
 import ApiPlugin from './api';
+import OrmPanelPlugin from './orm-panel/server';
 // Run the server! 
 const start = async () => {
   console.log('Try to connect');
   await createDefaultConnection(); 
   console.log('Registering API Routers');
-  app.register(ApiPlugin,{prefix:'/api/v0'})  
+  app.register(ApiPlugin,{prefix:'/api/v0'});
+  app.register(OrmPanelPlugin,{prefix:'/orm',connection:defaultConn})  
   try {
     await app.listen(3100)
     console.log(`server listening on ${JSON.stringify(app.server.address())}`)
