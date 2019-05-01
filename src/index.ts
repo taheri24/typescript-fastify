@@ -13,11 +13,17 @@ const start = async () => {
   app.register(ApiPlugin,{prefix:'/api/v0'});
   try {
     console.log('try to start server');
-    await app.listen(3100)
+    await app.listen(3100);
+     
     console.log(`server listening on ${JSON.stringify(app.server.address())}`)
   } catch (err) {
     app.log.error(err)
-    process.exit(1)
+    process.exit(0);
   }
 }
+process.on('SIGINT', function() {
+  console.log("Caught interrupt signal");
+
+      process.exit();
+});
 start()

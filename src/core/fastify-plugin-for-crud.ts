@@ -21,6 +21,21 @@ export default function FastPluginForCRUD<T>(classType: any) {
             const result = await repo.find();
             return result || { message: 'not found' };
         });
+        fastify.delete('/:id', async req => {
+            const { id } = req.params;
+            const entity = await repo.findOne(id);
+            entity && await repo.remove(entity);
+            return entity || { message: 'not found' };
+        });
+        fastify.put('/:id', async req => {
+            const { id } = req.params;
+            const entity = await repo.findOne(id);
+            
+            if (!entity) return { message: 'not found' };
+            const newEntity = { ...entity, ...req.body };
+            await repo.save(newEntity)
+            return entity;
+        });
         fastify.post('/', async req => {
             const entity = repo.create();
             Object.assign(entity, req.body);
