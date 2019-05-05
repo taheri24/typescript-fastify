@@ -1,9 +1,11 @@
 import { defaultConn } from "./db";
 import { FastifyInstance } from "fastify";
-
-export default function FastPluginForCRUD<T>(classType: any) {
-
-    return function (fastify: FastifyInstance, opts, next) {
+import { TemplateDefinition } from "./templated-server";
+interface Hooks {
+    afterSingleEntity<T>(v: T): Promise<T>;
+}
+const TemplateForCRUD: TemplateDefinition<any, Hooks> = {
+    inject(fastify: FastifyInstance, classType, hooks) {
         const repo = defaultConn.getRepository(classType);
         const relations = repo.metadata.relations.map(r => r.propertyPath);
         fastify.get('/:id', async req => {
@@ -30,7 +32,7 @@ export default function FastPluginForCRUD<T>(classType: any) {
         fastify.put('/:id', async req => {
             const { id } = req.params;
             const entity = await repo.findOne(id);
-            
+
             if (!entity) return { message: 'not found' };
             const newEntity = { ...entity, ...req.body };
             await repo.save(newEntity)
@@ -43,6 +45,6 @@ export default function FastPluginForCRUD<T>(classType: any) {
             const id = repo.getId(storedEntity);
             return { id };
         });
-        next();
     }
 }
+export default TemplateForCRUD;

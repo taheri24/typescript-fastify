@@ -1,4 +1,3 @@
 import { Role } from "../entity/Role";
-import FastPluginForCRUD from "../core/fastify-plugin-for-crud";
-export default  FastPluginForCRUD(Role);
- 
+import { CRUD, templatedServer } from "../core";
+export default templatedServer(CRUD, Role);
