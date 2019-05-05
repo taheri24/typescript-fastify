@@ -1,4 +1,4 @@
-import { FastifyInstance } from "fastify";
+import { FastifyInstance, Plugin } from "fastify";
 
 export interface BaseTemplateDefinition {
     hooks?: any;
@@ -12,12 +12,23 @@ export interface TemplateDefinition<M, THooks> {
 }
 
 
-
+interface TemplatedServer<T extends BaseTemplateDefinition> {
+    hook<K extends keyof T['hooks']>(key: K, callback: T['hooks'][K]): this;
+    plugin: any;
+}
 export default function templatedServer<T extends BaseTemplateDefinition>(template: T,
-    model: T['model'],
-    hooks?: T['hooks']) {
-    return function (fastify: FastifyInstance, opts, next) {
-        template.inject(fastify, model, hooks);
-        next();
-    }
+    model: T['model']
+): TemplatedServer<T> & Plugin<any, any, any, any> {
+    const hooks: T['hooks'] = {}
+    const templatedResult: TemplatedServer<T> = {
+        hook(key, callback) {
+            hooks[key] = callback;
+            return templatedResult;
+        },
+        plugin(fastify: FastifyInstance, opts, next) {
+            template.inject(fastify, model, hooks);
+            next();
+        }
+    };
+    return Object.assign(templatedResult.plugin, templatedResult);
 } 

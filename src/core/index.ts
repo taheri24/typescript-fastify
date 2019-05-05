@@ -1,3 +1,4 @@
 import CRUD from "./crud";
 import templatedServer from './templated-server'
-export { CRUD, templatedServer };
+import {createDefaultConnection,defaultConn} from './db';
+export { CRUD, templatedServer ,createDefaultConnection,defaultConn};
