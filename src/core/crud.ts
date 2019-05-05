@@ -5,12 +5,14 @@ interface Hooks {
     afterSingleEntity<T>(v: T): Promise<T>;
 }
 const TemplateForCRUD: TemplateDefinition<any, Hooks> = {
-    inject(fastify: FastifyInstance, classType, hooks) {
+    inject(fastify: FastifyInstance, classType, hooks: Hooks) {
         const repo = defaultConn.getRepository(classType);
         const relations = repo.metadata.relations.map(r => r.propertyPath);
         fastify.get('/:id', async req => {
             const { id } = req.params;
-            const result = await repo.findOne(id, { relations });
+            let result = await repo.findOne(id, { relations });
+            if (hooks.afterSingleEntity instanceof Function)
+                result = await hooks.afterSingleEntity(result);
             return result || { message: 'not found' };
         });
         fastify.get('/schema', async () => {
