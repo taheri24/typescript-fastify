@@ -4,6 +4,7 @@
          "es5",
          "es6"
       ],
+      "baseUrl": "./src",
       "target": "es5",
       "module": "commonjs",
       "moduleResolution": "node",
@@ -11,6 +12,9 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
-      "jsx": "react"
+      "jsx": "react",
+      "paths": {
+         "templated-module":["./core"]
+      }
    }
 }

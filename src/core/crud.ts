@@ -1,12 +1,15 @@
 import { defaultConn } from "./db";
 import { FastifyInstance } from "fastify";
-import { TemplateDefinition } from "./templated-server";
+import { TemplateDefinition } from "templated-module";
 interface Hooks {
     afterSingleEntity<T>(v: T): Promise<T>;
 }
-const TemplateForCRUD: TemplateDefinition<any, Hooks> = {
-    inject(fastify: FastifyInstance, classType, hooks: Hooks) {
-        const repo = defaultConn.getRepository(classType);
+interface Model{
+    entity:{ new(): any }
+}
+const TemplateForCRUD: TemplateDefinition<Model, Hooks> = {
+    inject(fastify: FastifyInstance, model, hooks: Hooks) {
+        const repo = defaultConn.getRepository(model.entity);
         const relations = repo.metadata.relations.map(r => r.propertyPath);
         fastify.get('/:id', async req => {
             const { id } = req.params;

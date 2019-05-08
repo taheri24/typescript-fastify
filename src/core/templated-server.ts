@@ -16,7 +16,7 @@ interface TemplatedServer<T extends BaseTemplateDefinition> {
     hook<K extends keyof T['hooks']>(key: K, callback: T['hooks'][K]): this;
     plugin: any;
 }
-export default function templatedServer<T extends BaseTemplateDefinition>(template: T,
+export default function server<T extends BaseTemplateDefinition>(template: T,
     model: T['model']
 ): TemplatedServer<T> & Plugin<any, any, any, any> {
     const hooks: T['hooks'] = {}

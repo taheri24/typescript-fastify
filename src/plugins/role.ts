@@ -1,3 +1,3 @@
 import { Role } from "../entity/Role";
-import { CRUD, templatedServer } from "../core";
-export default templatedServer(CRUD, Role);
+import * as templatedModule from "templated-module";
+export default templatedModule.server(templatedModule.CRUD, { entity: Role });
