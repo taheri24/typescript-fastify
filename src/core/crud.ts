@@ -5,7 +5,7 @@ interface Hooks {
     afterSingleEntity<T>(v: T): Promise<T>;
 }
 interface Model{
-    entity:{ new(): any }
+    entityClass:{ new(...args:any[]): any }
 }
 const TemplateForCRUD: TemplateDefinition<Model, Hooks> = {
     inject(fastify: FastifyInstance, model, hooks: Hooks) {

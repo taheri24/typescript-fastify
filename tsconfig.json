@@ -14,7 +14,9 @@
       "sourceMap": true,
       "jsx": "react",
       "paths": {
-         "templated-module":["./core"]
+         "templated-module": [
+            "./core"
+         ]
       }
    }
 }
