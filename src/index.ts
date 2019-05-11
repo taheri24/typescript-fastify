@@ -1,3 +1,5 @@
+ 
+ 
 // Require the framework and instantiate it
 //const fastify = require()({ logger: true })
 import * as fastify from 'fastify';
