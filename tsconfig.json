@@ -5,7 +5,7 @@
          "es6"
       ],
       "baseUrl": "./src",
-      "target": "es5",
+      "target": "es2018",
       "module": "commonjs",
       "moduleResolution": "node",
       "outDir": "./build",
