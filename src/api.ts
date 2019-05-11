@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
-import RolePlugin from './plugins/role';
-import UserPlugin from "./plugins/user";
+import RolePlugin from './plugins/roles';
+import UserPlugin from "./plugins/users";
  
 export default function ApiPlugin(fastify:FastifyInstance,opts,next){
     // register business routes
