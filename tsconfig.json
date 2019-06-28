@@ -4,13 +4,19 @@
          "es5",
          "es6"
       ],
-      "target": "es5",
+      "baseUrl": "./src",
+      "target": "es2018",
       "module": "commonjs",
       "moduleResolution": "node",
       "outDir": "./build",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
-      "jsx": "react"
+      "jsx": "react",
+      "paths": {
+         "templated-module": [
+            "./core"
+         ]
+      }
    }
 }

@@ -6,20 +6,12 @@
    "password": "mysql",
    "database": "fastify",
    "synchronize": true,
-   "logging": false,
+   "logging": true,
    "entities": [
-      "src/entity/**/*.ts"
+      "src/models/**/*.ts"
    ],
-   "extra": { "insecureAuth": true },
-   "migrations": [
-      "src/migration/**/*.ts"
-   ],
-   "subscribers": [
-      "src/subscriber/**/*.ts"
-   ],
+   "extra": { "insecureAuth": true } ,
    "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
+      "entitiesDir": "src/models" 
    }
 }

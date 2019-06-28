@@ -8,5 +8,8 @@ export class Role {
 
     @Column()
     name: string;
+
+    @Column({type:'json'})
+    securityData:any;
  
 }
