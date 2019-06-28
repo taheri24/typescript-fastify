@@ -4,15 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev  --transpileOnly  --inspect --ignore-watch  node_modules src/index.ts",
-    "nodemon": "nodemon"
+    "start": "node  -r ts-node/register/transpile-only -r ./src/register  src"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "fastify": "^2.3.0",
     "fastify-static": "^2.4.0",
-    "flatstr": "^1.0.10",
     "fs-extra": "^7.0.1",
     "mariadb": "^2.0.3",
     "mysql": "^2.17.1"
